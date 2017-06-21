@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'oauth2_provider',
     'corsheaders',
     'rest_framework',
-    'klimr_login',
     'klimr_main',
     'debug_toolbar',
 ]
