@@ -1,0 +1,45 @@
+#####
+# Docker compose YAML file
+#
+# For documentation see: https://docs.docker.com/compose/yml/
+#####
+
+version: "2"
+
+volumes:
+    static-files:
+    
+    
+services:
+    db:
+        image: postgres:9.6
+        volumes:
+            - /opt/klimr/psql:/var/lib/postgresql/data/pgdata
+        env_file:
+            - docker_config/environment/development.env
+
+    webserver:
+        build:
+            context: .
+            dockerfile: docker_services/webserver/Dockerfile
+        ports:
+            - "8000:80"
+        depends_on:
+            - webapp
+        volumes:
+            - static-files:/srv/static-files
+        env_file:
+            - docker_config/environment/development.env
+
+    webapp:
+        build:
+            context: docker_webapp
+        volumes:
+            #- app/:/srv/klimr
+            - static-files:/srv/static-files
+        expose:
+            - "8000"
+        depends_on:
+            - db
+        env_file:
+            - docker_config/environment/development.env
