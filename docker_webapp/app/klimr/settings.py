@@ -25,7 +25,7 @@ SECRET_KEY = '$jop)$!8gk&fj66np6+awd@+dgci5t@#h@4+@=*%)qz_08%i14'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['klimr.raaas.ru', '192.168.1.4', '127.0.0.1']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'oauth2_provider',
     'corsheaders',
     'rest_framework',
+    'klimr_login',
     'klimr_main',
     'debug_toolbar',
 ]
